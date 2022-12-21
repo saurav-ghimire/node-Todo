@@ -1,0 +1,37 @@
+<% if (errors && errors.length > 0) {
+    errors.forEach(function(err, key){
+        if (err && err.msg) { %>
+            <div class="alert alert-danger alert-dismissible">
+                <span><%- err.msg %></span>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        <% } else if (err && Object.keys(err).length > 0) {
+            for (var key in err) {
+                if (err.hasOwnProperty(key)) { %>
+                    <div class="alert alert-danger alert-dismissible">
+                        <span><%- err[key]['msg'] %></span>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                <% }
+            }
+        }
+    });
+} else if(success_msg && success_msg.length > 0) { %>
+    <div class="alert alert-success alert-dismissible">
+        <span><%- success_msg[0] %></span>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+<% } else if(error_msg && error_msg.length > 0) { %>
+    <div class="alert alert-danger alert-dismissible">
+        <span><%- error_msg[0] %></span>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+<% } %>
